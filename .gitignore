@@ -1,0 +1,67 @@
+# Node.js (React frontend)
+node_modules/
+.pnp
+.pnp.js
+
+# Testing (React frontend)
+coverage/
+
+# Production (React frontend)
+build/
+
+# Misc (React frontend)
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# C# / .NET
+bin/
+obj/
+*.user
+*.suo
+*.vscode/
+.vs/
+*.csproj.user
+*.cache
+*.log
+*/bin
+*/obj
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+artifacts/
+*/artifacts/
+*.exe
+*.dll
+*.pdb
+*.userprefs
+*.appx
+*.appxrecipe
+*.ilk
+*.msi
+*.zip
+*.vc.db
+*.ncb
+*.sdf
+*.opensdf
+*.suo
+*.sln.docstates
+*.json.user
+*.cache
+*.ilk
+*.meta
+*.tlog
+*.bin
+*.log
+*.vspscc
