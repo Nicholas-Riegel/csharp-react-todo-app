@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import * as todoService from './services/todoService';
+import './App.css';
 
 const App = () => {
 
@@ -28,8 +29,6 @@ const App = () => {
 			
 			await todoService.createTodo(todo);
 			
-			// setTodoArray([newTodo, ...todoArray]);
-
 			setTodo(initialTodo);
 			
 			fetchTodos();
@@ -41,16 +40,7 @@ const App = () => {
 		
 		try {
 
-			// const updatedTodo = await todoService.updateTodo(data, todoId);
 			await todoService.updateTodo(data, todoId);
-
-			// if (updatedTodo.error) throw new Error(updatedTodo.error);
-	
-			// const updatedTodoArray = todoArray.map((todo) =>
-			// 	todo.id === updatedTodo.id ? updatedTodo: todo
-			// );
-			
-			// setTodoArray(updatedTodoArray);
 
 			fetchTodos();
 
@@ -73,27 +63,31 @@ const App = () => {
 	useEffect(() => {fetchTodos()}, []);
 	
 	return (
-		<>
+		<div id='todos-wrapper'>
 			<h1>Todos</h1>
-			{todoArray.map((todo) => (
-				<div key={todo.id}>
-					<input
-						type="checkbox"
-						checked={todo.completed}
-						onChange={(e) => handleUpdateTodo({...todo, completed: e.target.checked}, todo.id)}
-					/>
-					<p style={{textDecoration: todo.completed ? 'line-through' : 'none'}}>{todo.description}</p>
-					<button onClick={() => handleUpdateTodo(todo)}>Edit</button>
-					<button onClick={() => handleRemoveTodo(todo.id)}>Delete</button>
+			<div id='todos-container'>
+				{todoArray.map((todo) => (
+					<div key={todo.id} id='todo'>
+						<input
+							type="checkbox"
+							checked={todo.completed}
+							onChange={(e) => handleUpdateTodo({...todo, completed: e.target.checked}, todo.id)}
+						/>
+						<span style={{textDecoration: todo.completed ? 'line-through' : 'none'}}>{todo.description}</span>
+						{/* <button onClick={() => handleUpdateTodo(todo)}>Edit</button> */}
+						<button onClick={() => handleRemoveTodo(todo.id)}>Delete</button>
+					</div>
+				))}
+				<div id='add-todo-container'>
+					<input 
+						type="text" 
+						placeholder="Add a todo"
+						value={todo.description}
+						onChange={(e)=>handleDescriptionChange(e.target.value)} />
+					<button onClick={() => handleAddTodo(todo)}>Add</button>
 				</div>
-			))}
-			<input 
-				type="text" 
-				placeholder="Add a todo"
-				value={todo.description}
-				onChange={(e)=>handleDescriptionChange(e.target.value)} />
-			<button onClick={() => handleAddTodo(todo)}>Add</button>
-		</>
+			</div>
+		</div>
 	)
 }
 
