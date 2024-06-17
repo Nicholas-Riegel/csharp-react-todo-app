@@ -47,7 +47,16 @@ app.MapPost("/todos", async (Todo newTodo, DatabaseContext dbContext) =>
     using var connection = dbContext.CreateConnection();
     var sql = "INSERT INTO todos (description) VALUES (@Description);";
     var result = await connection.ExecuteAsync(sql, new { newTodo.Description });
-    return Results.Ok(result);
+    if (result > 0)
+    {
+        // Get the ID of the newly inserted todo
+        var newId = await connection.ExecuteScalarAsync<int>("SELECT LAST_INSERT_ID();");
+        newTodo.Id = newId; // Set the ID of the new todo
+
+        return Results.Ok(newTodo); // Return the new todo
+    }
+
+    return Results.Problem("An error occurred while creating the todo.");
 });
 
 // get a one todo
@@ -62,10 +71,21 @@ app.MapGet("/todos/todo/{id}", async (int id, DatabaseContext dbContext) =>
 app.MapPut("/todos/todo/{id}", async (int id, Todo updatedTodo, DatabaseContext dbContext) =>
 {
     using var connection = dbContext.CreateConnection();
-    var sql = "UPDATE todos SET description = @Description, completed = @Completed WHERE Id = @Id;";
-    var result = await connection.ExecuteAsync(sql, new { updatedTodo.Description, updatedTodo.Completed, Id = id });
-    return result > 0 ? Results.Ok() : Results.NotFound();
+    var sqlUpdate = "UPDATE todos SET description = @Description, completed = @Completed WHERE id = @Id;";
+    var result = await connection.ExecuteAsync(sqlUpdate, new { updatedTodo.Description, updatedTodo.Completed, Id = id });
+
+    if (result > 0)
+    {
+        // Fetch the updated todo
+        var sqlSelect = "SELECT * FROM todos WHERE id = @Id;";
+        var todo = await connection.QuerySingleOrDefaultAsync<Todo>(sqlSelect, new { Id = id });
+
+        return todo != null ? Results.Ok(todo) : Results.NotFound();
+    }
+
+    return Results.NotFound();
 });
+
 
 // delete a todo
 app.MapDelete("/todos/todo/{id}", async (int id, DatabaseContext dbContext) =>

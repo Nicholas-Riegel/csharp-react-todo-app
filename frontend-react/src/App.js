@@ -3,79 +3,96 @@ import * as todoService from './services/todoService';
 
 const App = () => {
 
-const initialTodo = {todo_text: ''};
-const [todoArray, setTodoArray] = useState([]);
-const [todo, setTodo] = useState(initialTodo);
+	const initialTodo = {description: ''};
+	const [todoArray, setTodoArray] = useState([]);
+	const [todo, setTodo] = useState(initialTodo);
 
-const fetchTodos = async () => {
-  const data = await todoService.getAllTodos();
-  setTodoArray(data);
-};
+	const fetchTodos = async () => {
+		
+		const data = await todoService.getAllTodos();
+		
+		setTodoArray(data);
+	};
 
-	const handleAddTodo = async (data) => {
+	const handleDescriptionChange = (value) => {
+		
+		setTodo({
+			...todo,
+			description: value
+		});
+	};
+
+	const handleAddTodo = async (todo) => {
+		
 		try {
-			const newTodo = await todoService.createTodo(data);
-			setTodoArray([newTodo, ...todoArray]);
-			// setIsFormOpen(false);
-		} catch (error) {
-			console.log(error);
-		}
+			
+			await todoService.createTodo(todo);
+			
+			// setTodoArray([newTodo, ...todoArray]);
+
+			setTodo(initialTodo);
+			
+			fetchTodos();
+
+		} catch (error) {console.log(error)}
 	};
 
 	const handleUpdateTodo = async (data, todoId) => {
+		
 		try {
-			const updatedTodo = await todoService.updateTodo(data, todoId);
+
+			// const updatedTodo = await todoService.updateTodo(data, todoId);
+			await todoService.updateTodo(data, todoId);
+
+			// if (updatedTodo.error) throw new Error(updatedTodo.error);
 	
-			if (updatedTodo.error) {
-				throw new Error(updatedTodo.error);
-			}
-	
-			const updatedTodoArray = todoArray.map((todo) =>
-				todo.id !== updatedTodo.id ? todo : updatedTodo
-			);
-			setTodoArray(updatedTodoArray);
-		} catch (error) {
-			console.log(error);
-		}
+			// const updatedTodoArray = todoArray.map((todo) =>
+			// 	todo.id === updatedTodo.id ? updatedTodo: todo
+			// );
+			
+			// setTodoArray(updatedTodoArray);
+
+			fetchTodos();
+
+		} catch (error) {console.log(error)}
 	};
   
 	const handleRemoveTodo = async (todoId) => {
+		
 		try {
+
 			const deletedTodo = await todoService.deleteTodo(todoId);
 	
-			if (deletedTodo.error) {
-				throw new Error(deletedTodo.error);
-			}
+			if (deletedTodo.error) throw new Error(deletedTodo.error);
+			
+			fetchTodos();
 	
-			const updatedTodoArray = todoArray.filter((todo) =>
-				todo.id !== todoId
-			);
-			setTodoArray(updatedTodoArray);
-		} catch (error) {
-			console.log(error);
-		}
+		} catch (error) {console.log(error)}
 	}
-  useEffect(() => {
-
-		fetchTodos();
+  
+	useEffect(() => {fetchTodos()}, []);
 	
-	}, []);
 	return (
 		<>
-    <h1>Todos</h1>
-    {todoArray.map((todo) => (
-      <div key={todo.id}>
-        <p>{todo.todo_text}</p>
-        <button onClick={() => handleUpdateTodo(todo)}>Edit</button>
-        <button onClick={() => handleRemoveTodo(todo.id)}>Delete</button>
-      </div>
-    ))}
-    <input 
-      type="text" 
-      placeholder="Add a todo"
-      value={todo.todo_text}
-      onChange={} />
-    <button onClick={() => handleAddTodo()}>Add</button>
+			<h1>Todos</h1>
+			{todoArray.map((todo) => (
+				<div key={todo.id}>
+					<input
+						type="checkbox"
+						checked={todo.completed}
+						onChange={(e) => handleUpdateTodo({...todo, completed: e.target.checked}, todo.id)}
+					/>
+					<p style={{textDecoration: todo.completed ? 'line-through' : 'none'}}>{todo.description}</p>
+					<button onClick={() => handleUpdateTodo(todo)}>Edit</button>
+					<button onClick={() => handleRemoveTodo(todo.id)}>Delete</button>
+				</div>
+			))}
+			<input 
+				type="text" 
+				placeholder="Add a todo"
+				value={todo.description}
+				onChange={(e)=>handleDescriptionChange(e.target.value)} />
+			<button onClick={() => handleAddTodo(todo)}>Add</button>
 		</>
 	)
 }

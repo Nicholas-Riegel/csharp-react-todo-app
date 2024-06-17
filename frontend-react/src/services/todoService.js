@@ -22,12 +22,12 @@ const createTodo = async (data) => {
 	}
 };
 
-const updateTodo = async (formData, todoId) => {
+const updateTodo = async (data, todoId) => {
 	try {
 		const res = await fetch(`${BASE_URL}/todo/${todoId}`, {
 			method: 'PUT',
 			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify(formData),
+			body: JSON.stringify(data)
 		});
 		return res.json();
 	} catch (err) {
