@@ -45,8 +45,8 @@ app.MapGet("/todos", async (DatabaseContext dbContext) =>
 app.MapPost("/todos", async (Todo newTodo, DatabaseContext dbContext) =>
 {
     using var connection = dbContext.CreateConnection();
-    var sql = "INSERT INTO todos (todo_text) VALUES (@Todo_text);";
-    var result = await connection.ExecuteAsync(sql, new { newTodo.Todo_text });
+    var sql = "INSERT INTO todos (description) VALUES (@Description);";
+    var result = await connection.ExecuteAsync(sql, new { newTodo.Description });
     return Results.Ok(result);
 });
 
@@ -62,8 +62,8 @@ app.MapGet("/todos/todo/{id}", async (int id, DatabaseContext dbContext) =>
 app.MapPut("/todos/todo/{id}", async (int id, Todo updatedTodo, DatabaseContext dbContext) =>
 {
     using var connection = dbContext.CreateConnection();
-    var sql = "UPDATE todos SET todo_text = @Todo_text WHERE Id = @Id;";
-    var result = await connection.ExecuteAsync(sql, new { updatedTodo.Todo_text, Id = id });
+    var sql = "UPDATE todos SET description = @Description, completed = @Completed WHERE Id = @Id;";
+    var result = await connection.ExecuteAsync(sql, new { updatedTodo.Description, updatedTodo.Completed, Id = id });
     return result > 0 ? Results.Ok() : Results.NotFound();
 });
 

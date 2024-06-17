@@ -4,6 +4,7 @@ USE csharp_webapi_01;
 
 CREATE TABLE todos (
     id INT NOT NULL AUTO_INCREMENT,
-    todo_text varchar(255) NOT NULL,
-    PRIMARY KEY (`id`)
-) 
+    description VARCHAR(255) NOT NULL,
+    completed BOOLEAN NOT NULL DEFAULT 0,
+    PRIMARY KEY (id)
+);

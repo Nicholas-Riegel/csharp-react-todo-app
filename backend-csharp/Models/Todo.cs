@@ -8,6 +8,7 @@ namespace backend_csharp.Models
     public class Todo
     {
         public int Id { get; set; }
-        public string? Todo_text { get; set; }
+        public string? Description { get; set; }
+        public bool Completed { get; set; }
     }
 }
