@@ -57,7 +57,6 @@ artifacts/
 *.opensdf
 *.suo
 *.sln.docstates
-*.sln
 *.json.user
 *.cache
 *.ilk
