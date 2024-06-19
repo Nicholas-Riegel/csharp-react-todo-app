@@ -1,4 +1,4 @@
-using MySql.Data.MySqlClient;
+using Npgsql;
 using System.Data;
 
 namespace backend_csharp.Data
@@ -12,6 +12,6 @@ namespace backend_csharp.Data
             _connectionString = connectionString;
         }
 
-        public IDbConnection CreateConnection() => new MySqlConnection(_connectionString);
+        public IDbConnection CreateConnection() => new NpgsqlConnection(_connectionString);
     }
 }
