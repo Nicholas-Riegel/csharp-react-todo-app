@@ -9,7 +9,7 @@ using System.Data;
 // from the Microsoft.AspNetCore.Builder namespace
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = "Server=13.58.34.6;Database=csharp_webapi_01;User=root;Password='';Port=3306;";
+var connectionString = "Server=localhost;Database=csharp_webapi_01;User=root;Password='';Port=3306;";
 
 // DatabaseContext from Data/DatabaseContext.cs
 // (A singleton is a design pattern that restricts the instantiation of a class to one single instance. In the context of ASP.NET Core, when a service is registered as a singleton, the same instance of the service is used throughout the application's lifetime. This means that the DI container will create the instance the first time it is requested, and then it will return that same instance for all subsequent requests.)
