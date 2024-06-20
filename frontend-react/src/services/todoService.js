@@ -1,4 +1,5 @@
-const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/todos`;
+// const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/todos`;
+const BASE_URL = 'http://3.14.5.204:5036/todos';
 
 const getAllTodos = async () => {
 	try {
