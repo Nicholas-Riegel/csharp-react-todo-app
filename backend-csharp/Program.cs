@@ -31,7 +31,7 @@ if (!app.Environment.IsDevelopment())
 app.MapGet("/todos", async (DatabaseContext dbContext) =>
 {
     using var connection = dbContext.CreateConnection();
-    var todos = await connection.QueryAsync<Todo>("SELECT * FROM todos;");
+    var todos = await connection.QueryAsync<Todo>("SELECT * FROM todos ORDER BY id;");
     return Results.Ok(todos);
 });
 
