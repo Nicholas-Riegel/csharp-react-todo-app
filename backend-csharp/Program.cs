@@ -2,7 +2,7 @@
 For all of this code I relied pretty heavily on interactions with ChatGPT. 
 However, I did not accept all of its suggestions.
 In particular, I rejected its responses where I could not see the logic behind the suggestion.
-And I tried to understand every line of code that I used from ChatGPT.
+And I tried to understand and explain every line of code that I used from ChatGPT.
  ==========================================================================*/
 
 using Microsoft.AspNetCore.Builder;
