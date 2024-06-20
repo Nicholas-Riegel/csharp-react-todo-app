@@ -13,7 +13,7 @@ The app may be viewed at http://3.14.5.204:3000/todos
 2. Create full stack CRUD app
 3. Create end-to-end MVP deployed on AWS
 
-## What is C#?
+## What are C, C++ and C#?
 Although there are some similarities between C, C++ and C#, each is a distinct programming language. C was developed first and is primarily used for low-level programming and situations where direct hardware manipulation is necessary. C++ evolved from C to add object-oriented features, better type checking, and additional paradigms like generic programming. C# was designed by Anders Hejlsberg and first released by Microsoft in 2000. The language has influences from both C++ and Java. It was designed to be a simple, powerful, type-safe, and object-oriented language for modern industry projects. It is used for 
 * web development, 
 * desktop applications (especially for Windows), 
