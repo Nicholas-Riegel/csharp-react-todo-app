@@ -1,20 +1,20 @@
 # Csharp Backend React Frontend Todo App
 
-This app is a learning projects to learn C# and .Net Core. 
-The app may be viewed at http://3.14.5.204:3000/todos
+This app is a learning project to learn C# and .NET Core.
 
-The app is deployed on its own AWS Ec2 instance.
-Occasionally AWS restarts the Ec2 instances. 
-Please let me know if the app is down or if there are any problems with it. 
+The app implements a REST API with a Postgres database and a C# .NET Core backend and a React frontend.
+
+The app is deployed on its own AWS Ec2 instance. Occasionally AWS restarts the Ec2 instances. Please let me know if the app is down or if there are any problems with it. 
+
+The app may be viewed at http://3.14.5.204:3000/todos
 
 ## What is C#?
 C# is an object-oriented programming language developed by Microsoft. It was first released in 2000, designed by Anders Hejlsberg, and is intended to be simple, powerful, type-safe, and object-oriented. It is used for 
 * web development, 
 * desktop applications (especially for Windows), 
 * mobile development, 
-* game development (particularly with the Unity game engine, which uses C# as its primary scripting language) and 
+* game development (especially with the Unity game engine, which uses C# as its primary scripting language)
 * cloud-based Services.
-
 
 ## What are .Net, ASP.NET, .NET Core and ASP.NET Core?
 
@@ -25,7 +25,7 @@ C# is an object-oriented programming language developed by Microsoft. It was fir
 
 ## Problems / learnings I had developing the app.
 
-The most significant problem I encountered developing the app was connecting the C# backend with mysql on my AWS Ec2 instance. Due to time constraints, and needing to get the app deployed by a certain date, I decided to refactor the backend to work with postgres because 1. there was no particulary reason to run it on mysql as opposed to postgres, 2. I knew it was possible, and straightforward to connect a backend with a postgres database on my Ec2 instance, because I had done it before, and 3. the refactoring would be relatively easy. 
+The most significant problem I encountered developing the app was connecting the C#/.NET Core backend with mysql on my AWS Ec2 instance. Due to time constraints I decided to refactor the backend to work with postgres because 1. There was no particular reason to run it on mysql as opposed to postgres, 2. I knew it was possible and straightforward to connect a backend with a postgres database on my Ec2 instance because I had done it before, and 3. the refactoring would be relatively easy. 
 
 ## Ideas for further development
 
