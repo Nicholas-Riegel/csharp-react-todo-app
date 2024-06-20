@@ -47,7 +47,7 @@ if (!app.Environment.IsDevelopment())
 
 // Get all todos
 // dbContext is a new instance of the class \
-// the connection is already in the app
+// the connection string is already in the app
 app.MapGet("/todos", async (DatabaseContext dbContext) =>
 {
     // CreateConnection is a method in the DatabaseContext class
@@ -95,6 +95,7 @@ app.MapPut("/todos/todo/{id}", async (int id, Todo updatedTodo, DatabaseContext 
     using var connection = dbContext.CreateConnection();
     var sqlUpdate = "UPDATE todos SET description = @Description, completed = @Completed WHERE id = @Id;";
     // Dapper Execute commands are for inserting, updating, or deleting data; Query commands are just for getting data
+    // not sure why a type isn't needed here. it has something to do with types in this context only being needed for "mapping", but I'm not sure what that means. 
     var result = await connection.ExecuteAsync(sqlUpdate, new { updatedTodo.Description, updatedTodo.Completed, Id = id });
 
     if (result > 0)
