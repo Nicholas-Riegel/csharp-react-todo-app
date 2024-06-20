@@ -1,4 +1,4 @@
-# Csharp Backend React Frontend Todo App
+# Csharp React Todo App
 
 This app is a learning project to learn C# and .NET Core.
 
@@ -25,7 +25,7 @@ C# is an object-oriented programming language developed by Microsoft. It was fir
 
 ## Problems / learnings I had developing the app.
 
-The most significant problem I encountered developing the app was connecting the .NET Core backend with mysql on my AWS Ec2 instance. Due to time constraints, I decided to refactor the backend to work with postgres because, 1. There was no particular reason to run it on mysql as opposed to postgres, 2. I knew it was possible and straightforward to connect a backend to a postgres database on my Ec2 instance because I had done it before, and 3. the refactoring would be relatively simple. 
+The most significant problem I encountered developing the app was connecting the .NET Core backend with mysql on my AWS Ec2 instance. Due to time constraints, I decided to refactor the backend to work with postgres because, 1. there was no particular reason to run it on mysql as opposed to postgres, 2. I knew it was possible and straightforward to connect a backend to a postgres database on my Ec2 instance because I had done it before, and 3. the refactoring would be relatively simple. 
 
 ## Ideas for further development
 
