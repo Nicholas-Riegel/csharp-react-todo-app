@@ -8,6 +8,11 @@ The app is deployed on an AWS Ec2 instance. Occasionally AWS restarts the Ec2 in
 
 The app may be viewed at http://3.14.5.204:3000/todos
 
+## Project Goals
+1. Begin learning C#/.NET Core
+2. Create full stack CRUD app
+3. Create end-to-end MVP deployed on AWS
+
 ## What is C#?
 C# is an object-oriented programming language developed by Microsoft. It was first released in 2000, designed by Anders Hejlsberg, and is intended to be simple, powerful, type-safe, and object-oriented. It is used for 
 * web development, 
