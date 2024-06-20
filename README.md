@@ -22,7 +22,7 @@ Although there are some similarities between C, C++ and C#, each is a distinct p
 * cloud-based services.
 
 ## What are .NET, ASP.NET, .NET Core and ASP.NET Core?
-
+All of these are different frameworks designed by Microsoft for the C# programming language. 
 * .NET Framework: The original, Windows-only framework for building various types of applications with extensive libraries and tools.
 * ASP.NET: A framework within the .NET Framework (and .NET Core) for building web applications and services.
 * .NET Core: A cross-platform, high-performance, modular, and open-source framework for building a wide range of applications.
