@@ -1,5 +1,5 @@
 /* ==========================================================================
-For all of this code I relied pretty heavily on interactions with ChatGPT. 
+For all of this code I relied on interactions with ChatGPT. 
 However, I did not accept all of its suggestions.
 In particular, I rejected its responses where I could not see the logic behind the suggestion.
 And I tried to understand and explain every line of code that I used from ChatGPT.
@@ -52,7 +52,7 @@ app.MapGet("/todos", async (DatabaseContext dbContext) =>
 {
     // CreateConnection is a method in the DatabaseContext class
     using var connection = dbContext.CreateConnection();
-    // QueryAsync is a method in the Dapper that is added to IDbConnection (set in the DatabaseContext class)
+    // QueryAsync is a method in the Dapper library that is added to IDbConnection (set in the DatabaseContext class)
     // Dapper's QueryAsync<T> method is a generic method. It means that T can be any type. It is the return type: what is returned from the database
     // Dapper Query commands are just for getting data; Execute commands are for inserting, updating, or deleting data
     var todos = await connection.QueryAsync<Todo>("SELECT * FROM todos ORDER BY id;");
@@ -79,14 +79,6 @@ app.MapPost("/todos", async (Todo newTodo, DatabaseContext dbContext) =>
 
     return Results.Problem("An error occurred while creating the todo.");
 });
-
-// Get a single todo (Not used at the moment)
-// app.MapGet("/todos/todo/{id}", async (int id, DatabaseContext dbContext) =>
-// {
-//     using var connection = dbContext.CreateConnection();
-//     var todo = await connection.QueryFirstOrDefaultAsync<Todo>("SELECT * FROM todos WHERE Id = @Id;", new { Id = id });
-//     return todo is not null ? Results.Ok(todo) : Results.NotFound();
-// });
 
 // Update a todo
 // id and updatedTodo are passed in the body of the put request
