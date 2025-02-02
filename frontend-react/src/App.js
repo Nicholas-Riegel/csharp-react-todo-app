@@ -66,7 +66,7 @@ const App = () => {
 		<div id='todos-wrapper'>
 			<h1>Todos</h1>
 			<div id='todos-container'>
-				{todoArray.map((todo) => (
+				{todoArray && todoArray.map((todo) => (
 					<div key={todo.id} id='todo'>
 						<input
 							type="checkbox"

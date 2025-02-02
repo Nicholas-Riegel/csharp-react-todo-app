@@ -17,7 +17,8 @@ using System.Data;
 // WebApplication is a class that is part of the ASP.NET Core framework (Microsoft.AspNetCore.Builder)
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = "Host=localhost;Port=5432;Database=csharp_webapi_01;Username=ubuntu;Password=ubuntu;";
+// var connectionString = "Host=localhost;Port=5432;Database=csharp_webapi_01;Username=ubuntu;Password=ubuntu;";
+var connectionString = "Host=localhost;Port=5432;Database=csharp_webapi_01;Username=nicholas;";
 // A "singleton" is a class that is instantiated only once
 builder.Services.AddSingleton(new DatabaseContext(connectionString));
 
@@ -100,5 +101,19 @@ app.MapDelete("/todos/todo/{id}", async (int id, DatabaseContext dbContext) =>
     var result = await connection.ExecuteAsync("DELETE FROM todos WHERE Id = @Id;", new { Id = id });
     return result > 0 ? Results.Ok() : Results.NotFound();
 });
+
+// test that connection to db is working
+using (var connection = new Npgsql.NpgsqlConnection(connectionString))
+{
+    try
+    {
+        connection.Open();
+        Console.WriteLine("Connected to PostgreSQL successfully!");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Database connection error: {ex.Message}");
+    }
+}
 
 app.Run();
