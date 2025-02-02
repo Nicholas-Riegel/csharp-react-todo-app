@@ -1,10 +1,3 @@
-/* ==========================================================================
-For all of this code I relied on interactions with ChatGPT. 
-However, I did not accept all of its suggestions.
-In particular, I rejected its responses where I could not see the logic behind the suggestion.
-And I tried to understand and explain every line of code that I used from ChatGPT.
- ==========================================================================*/
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
