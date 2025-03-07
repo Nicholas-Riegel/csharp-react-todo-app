@@ -10,15 +10,16 @@ using Dapper;
 using backend_csharp.Models;
 using System.Data;
 
-
-
-
 // Create a new WebApplication instance
 // WebApplication is a class that is part of the ASP.NET Core framework (Microsoft.AspNetCore.Builder)
 var builder = WebApplication.CreateBuilder(args);
 
-// var connectionString = "Host=localhost;Port=5432;Database=csharp_webapi_01;Username=ubuntu;Password=ubuntu;";
-var connectionString = "Host=localhost;Port=5432;Database=csharp_webapi_01;Username=nicholas;";
+// local
+// var connectionString = "Host=localhost;Port=5432;Database=csharp_webapi_01;Username=nicholas;";
+
+// Hostinger
+var connectionString = "Host=localhost;Port=5432;Database=csharp_webapi_01;Username=postgres;Password=Npr!453xyz;";
+
 // A "singleton" is a class that is instantiated only once
 builder.Services.AddSingleton(new DatabaseContext(connectionString));
 
